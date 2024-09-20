@@ -24,6 +24,8 @@
     <link href="{{asset('front/')}}/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="{{asset('front/')}}/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="{{asset('front/')}}/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 
     <!-- Template Main CSS File -->
     <link href="{{asset('front/')}}/assets/css/style.css" rel="stylesheet">
@@ -36,7 +38,7 @@
 <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-        <h1 class="logo me-auto"><a href="index.html">Sailor</a></h1>
+        <h1 class="logo me-auto"><a href="{{route('home')}}">Sailor</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
 {{--
          <a href="index.html" class="logo me-auto"><img src="{{asset('front/')}}/assets/img/logo.png" alt="" class="img-fluid"></a>

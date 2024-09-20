@@ -28,7 +28,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered($user = User::create($validated)));
+        event(new Registered($user = User::create($validated)))->assignRole([\App\RoleEnum::USER]);
 
         Auth::login($user);
 
@@ -45,6 +45,8 @@ new #[Layout('layouts.guest')] class extends Component
                 <x-text-input wire:model="name" id="name" class="form-control block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
+
+
 
             <!-- Email Address -->
             <div class="form-group mb-3">
@@ -73,7 +75,7 @@ new #[Layout('layouts.guest')] class extends Component
             </div>
 
             <div class="d-flex justify-content-between align-items-center">
-                <a class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" href="{{ route('login') }}" wire:navigate>
+                <a class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" href="{{ route('Login') }}" wire:navigate>
                     {{ __('Already registered?') }}
                 </a>
 

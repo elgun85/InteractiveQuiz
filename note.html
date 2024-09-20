@@ -1,0 +1,193 @@
+
+<div class="github">
+
+    echo "# Laravel-11-rest-api" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin https://github.com/elgun85/Laravel-11-rest-api.git
+    git push -u origin main
+
+
+    git remote add origin https://github.com/elgun85/InteractiveQuiz.git
+    git branch -M main
+    git push -u origin main
+
+
+
+
+    git pull origin main
+    git add .
+    git commit -m "     "
+    git push origin main
+
+
+
+
+    Əgər son commit mesajını dəyişmək istəyirsinizsə, --amend seçimi ilə git commit əmrini istifadə edə bilərsiniz:
+    git commit --amend -m "Yeni commit mesajı"
+    git push --force
+
+
+
+    ./vendor/bin/phpstan analyse --level=max
+
+</div>
+<div class="middleware Laravel-permission">
+
+
+    1. composer require spatie/laravel-permission
+2.php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+    3. php artisan migrate
+4.Mes Model-de HasRoles (use Spatie\Permission\Traits\HasRoles;)
+    5. UserFactory-da
+    public function configure():static
+    {
+    return $this->afterCreating(function (User $user){
+    $user->assignRole('user');//syncRoles('user');  // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol təyin edilsin
+    });
+    }
+    6. php artisan make:seeder RoleSeeder
+    public function run(): void
+    {
+    Role::create(['name' => 'admin']);
+    Role::create(['name' => 'user']);
+    }
+    7. DatabaseSeeder-da
+    $this->call(RoleSeeder::class);
+
+
+
+    //   User::factory(3)->create();
+
+    User::factory()->create([
+    'name' => 'Admin',
+    'email' => 'admin@admin.com',
+    'password' => bcrypt('12345678'),
+    ])->assignRole('admin');  //syncRoles('user');  // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol təyin edilsin
+
+    User::factory()->create([
+    'name' => 'User',
+    'email' => 'user@user.com',
+    'password' => bcrypt('12345678'),
+    ])->assignRole('user');
+    8.registerde event(new Registered($user = User::create($validated)))->assignRole('user');
+    9.php artisan migrate:fresh --seed
+
+    bele olanda route-da
+    Route::middleware('auth')->group(function ()
+    {
+    Route::get('/', [HomePageController::class, 'homepage'])->name('home')->middleware(['role:admin']);
+    }); yazirsan
+    @role('admin')
+    @endrole
+
+    tehlukesizlik baximindan
+
+    10. php artisan make:enum RoleEnum
+    enum RoleEnum: string
+    {
+    case ADMIN = 'admin';
+    case USER = 'user';
+    }
+
+
+    sonra harda admin yazmilmisdirsa
+mes
+    Role::create(['name' => RoleEnum::ADMIN]);
+    Role::create(['name' => RoleEnum::USER]);
+
+    @role(\App\RoleEnum::ADMIN)
+    <p>Bu adminlər üçündür.</p>
+    @endrole
+
+    php artisan migrate:fresh --seed
+
+</div>
+<div class="toastr">
+composer require php-flasher/flasher-toastr-symfony
+php bin/console flasher:install
+
+flasher:
+plugins:
+noty:
+scripts:
+- '/vendor/flasher/jquery.min.js'
+- '/vendor/flasher/toastr.min.js'
+- '/vendor/flasher/flasher-toastr.min.js'
+styles:
+- '/vendor/flasher/toastr.min.css'
+options:
+# Optional: Add global options here
+closeButton: true
+
+istifade qaydasi
+public function saveBook()
+{
+// laravel
+toastr()->success('Your account has been de-registered.');
+
+// or livewire
+flash()->success('User saved successfully!');
+
+}
+</div>
+<div class="reformat">
+    Reformat Edin:
+    Windows/Linux: Ctrl + Alt + L
+    Mac: Cmd + Alt + L
+
+    Adım 2: Tab düyməsini basın. Bu, seçdiyiniz bütün sətirləri bir neçə boşluq sağa sürüşdürəcək.
+    Adım 3: Əgər seçilmiş sətirləri sola sürüşdürmək istəyirsinizsə, Shift + Tab düymələrini istifadə edin.
+
+</div>
+<div class="api">
+    1. php artisan install:api
+    2.modellere use Laravel\Sanctum\HasApiTokens;
+    php artisan make:resource ProductResource - yaratmaq ucun
+    php artisan make:model Post -mc --api       model,migration,controller(resourse) yaradir api ucun
+
+
+
+
+</div>
+<div class="http status kodlari">
+    $response->ok() : bool;                  // 200 OK
+    $response->created() : bool;             // 201 Created
+    $response->accepted() : bool;            // 202 Accepted
+    $response->noContent() : bool;           // 204 No Content
+    $response->movedPermanently() : bool;    // 301 Moved Permanently
+    $response->found() : bool;               // 302 Found
+    $response->badRequest() : bool;          // 400 Bad Request
+    $response->unauthorized() : bool;        // 401 Unauthorized
+    $response->paymentRequired() : bool;     // 402 Payment Required
+    $response->forbidden() : bool;           // 403 Forbidden
+    $response->notFound() : bool;            // 404 Not Found
+    $response->requestTimeout() : bool;      // 408 Request Timeout
+    $response->conflict() : bool;            // 409 Conflict
+    $response->unprocessableEntity() : bool; // 422 Unprocessable Entity
+    $response->tooManyRequests() : bool;     // 429 Too Many Requests
+    $response->serverError() : bool;         // 500 Internal Server Error
+
+
+    1xx: İnformasiya Cavabları
+    100 Continue: Müştəriyə sorğusunu davam etdirməyi bildirir.
+    101 Switching Protocols: Serverin müştərinin protokol dəyişdirmə tələbini qəbul etdiyini göstərir.
+    2xx: Uğurlu Cavablar
+    200 OK: Sorğu müvəffəqiyyətlə tamamlandı.
+    201 Created: Sorğu nəticəsində yeni bir resurs yaradıldı.
+    204 No Content: Sorğu müvəffəqiyyətlə tamamlandı, amma geri qaytarılacaq heç bir məlumat yoxdur.
+    3xx: Yönləndirmə Cavabları
+    301 Moved Permanently: Resurs daimi olaraq başqa bir ünvana köçürüldü.
+    302 Found: Resurs müvəqqəti olaraq başqa bir ünvanda tapıldı.
+    4xx: Müştəri Xətaları
+    400 Bad Request: Müştəri tərəfindən göndərilən sorğu yanlış və ya yarımçıqdır.
+    401 Unauthorized: Sorğunun icrası üçün autentifikasiya tələb olunur.
+    403 Forbidden: Müştərinin sorğuya icazəsi yoxdur.
+    404 Not Found: Sorğunun istədiyi resurs tapılmadı.
+    5xx: Server Xətaları
+    500 Internal Server Error: Serverdə bir xəta baş verdi.
+    502 Bad Gateway: Server, başqa bir serverdən düzgün cavab ala bilmədi.
+    503 Service Unavailable: Server müvəqqəti olaraq xidmət göstərmir.
+</div>

@@ -54,7 +54,7 @@ new #[Layout('layouts.guest')] class extends Component
 
             <div class="d-flex justify-content-between align-items-center">
                 @if (Route::has('password.request'))
-                    <a class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" href="{{ route('password.request') }}" wire:navigate>
+                    <a class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" href="{{ route('Forgot-password') }}" wire:navigate>
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -63,6 +63,15 @@ new #[Layout('layouts.guest')] class extends Component
                     {{ __('Log in') }}
                 </x-primary-button>
             </div>
+            <hr class="my-4">
+            <!-- Google Login Button -->
+            <div class="d-flex justify-content-center">
+                <a href="{{ route('google.login') }}" class="btn btn-danger">
+                    <i class="fab fa-google"></i> {{ __('Login with Google') }}
+                </a>
+            </div>
+
+
         </form>
     </div>
 </div>

@@ -14,4 +14,8 @@ class UserController extends Controller
     {
         return view('quiz.page.user.Register');
     }
+    public function Forgot()
+    {
+        return view('quiz.page.user.forgot-password');
+    }
 }

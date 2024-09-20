@@ -1,5 +1,5 @@
 @extends('quiz.layout.master')
-@section('title','Login')
+@section('title','Forgot-password')
 @section('content')
 
     <main id="main">
@@ -21,7 +21,7 @@
 
         <!-- ======= Services Section ======= -->
         <section id="services" class="services">
-            <livewire:pages.auth.login />
+            <livewire:pages.auth.forgot-password />
         </section>
 
 

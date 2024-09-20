@@ -1,5 +1,5 @@
 @extends('quiz.layout.master')
-@section('title','Login')
+@section('title','Register')
 @section('content')
 
     <main id="main">
