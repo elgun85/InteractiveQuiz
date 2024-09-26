@@ -1,4 +1,3 @@
-
 <div class="github">
 
     echo "# Laravel-11-rest-api" >> README.md
@@ -15,20 +14,15 @@
     git push -u origin main
 
 
-
-
     git pull origin main
     git add .
-    git commit -m "     "
+    git commit -m " "
     git push origin main
-
-
 
 
     Əgər son commit mesajını dəyişmək istəyirsinizsə, --amend seçimi ilə git commit əmrini istifadə edə bilərsiniz:
     git commit --amend -m "Yeni commit mesajı"
     git push --force
-
 
 
     ./vendor/bin/phpstan analyse --level=max
@@ -38,14 +32,15 @@
 
 
     1. composer require spatie/laravel-permission
-2.php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+    2.php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
     3. php artisan migrate
-4.Mes Model-de HasRoles (use Spatie\Permission\Traits\HasRoles;)
+    4.Mes Model-de HasRoles (use Spatie\Permission\Traits\HasRoles;)
     5. UserFactory-da
     public function configure():static
     {
     return $this->afterCreating(function (User $user){
-    $user->assignRole('user');//syncRoles('user');  // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol təyin edilsin
+    $user->assignRole('user');//syncRoles('user'); // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol
+    təyin edilsin
     });
     }
     6. php artisan make:seeder RoleSeeder
@@ -58,14 +53,14 @@
     $this->call(RoleSeeder::class);
 
 
-
-    //   User::factory(3)->create();
+    // User::factory(3)->create();
 
     User::factory()->create([
     'name' => 'Admin',
     'email' => 'admin@admin.com',
     'password' => bcrypt('12345678'),
-    ])->assignRole('admin');  //syncRoles('user');  // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol təyin edilsin
+    ])->assignRole('admin'); //syncRoles('user'); // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol
+    təyin edilsin
 
     User::factory()->create([
     'name' => 'User',
@@ -94,7 +89,7 @@
 
 
     sonra harda admin yazmilmisdirsa
-mes
+    mes
     Role::create(['name' => RoleEnum::ADMIN]);
     Role::create(['name' => RoleEnum::USER]);
 
@@ -106,32 +101,33 @@ mes
 
 </div>
 <div class="toastr">
-composer require php-flasher/flasher-toastr-symfony
-php bin/console flasher:install
+    https://php-flasher.io/library/toastr/
+    composer require php-flasher/flasher-toastr-laravel
+    php bin/console flasher:install
 
-flasher:
-plugins:
-noty:
-scripts:
-- '/vendor/flasher/jquery.min.js'
-- '/vendor/flasher/toastr.min.js'
-- '/vendor/flasher/flasher-toastr.min.js'
-styles:
-- '/vendor/flasher/toastr.min.css'
-options:
-# Optional: Add global options here
-closeButton: true
+    flasher:
+    plugins:
+    noty:
+    scripts:
+    - '/vendor/flasher/jquery.min.js'
+    - '/vendor/flasher/toastr.min.js'
+    - '/vendor/flasher/flasher-toastr.min.js'
+    styles:
+    - '/vendor/flasher/toastr.min.css'
+    options:
+    # Optional: Add global options here
+    closeButton: true
 
-istifade qaydasi
-public function saveBook()
-{
-// laravel
-toastr()->success('Your account has been de-registered.');
+    istifade qaydasi
+    public function saveBook()
+    {
+    // laravel
+    toastr()->success('Your account has been de-registered.');
 
-// or livewire
-flash()->success('User saved successfully!');
+    // or livewire
+    flash()->success('User saved successfully!');
 
-}
+    }
 </div>
 <div class="reformat">
     Reformat Edin:
@@ -146,29 +142,27 @@ flash()->success('User saved successfully!');
     1. php artisan install:api
     2.modellere use Laravel\Sanctum\HasApiTokens;
     php artisan make:resource ProductResource - yaratmaq ucun
-    php artisan make:model Post -mc --api       model,migration,controller(resourse) yaradir api ucun
-
-
+    php artisan make:model Post -mc --api model,migration,controller(resourse) yaradir api ucun
 
 
 </div>
 <div class="http status kodlari">
-    $response->ok() : bool;                  // 200 OK
-    $response->created() : bool;             // 201 Created
-    $response->accepted() : bool;            // 202 Accepted
-    $response->noContent() : bool;           // 204 No Content
-    $response->movedPermanently() : bool;    // 301 Moved Permanently
-    $response->found() : bool;               // 302 Found
-    $response->badRequest() : bool;          // 400 Bad Request
-    $response->unauthorized() : bool;        // 401 Unauthorized
-    $response->paymentRequired() : bool;     // 402 Payment Required
-    $response->forbidden() : bool;           // 403 Forbidden
-    $response->notFound() : bool;            // 404 Not Found
-    $response->requestTimeout() : bool;      // 408 Request Timeout
-    $response->conflict() : bool;            // 409 Conflict
+    $response->ok() : bool; // 200 OK
+    $response->created() : bool; // 201 Created
+    $response->accepted() : bool; // 202 Accepted
+    $response->noContent() : bool; // 204 No Content
+    $response->movedPermanently() : bool; // 301 Moved Permanently
+    $response->found() : bool; // 302 Found
+    $response->badRequest() : bool; // 400 Bad Request
+    $response->unauthorized() : bool; // 401 Unauthorized
+    $response->paymentRequired() : bool; // 402 Payment Required
+    $response->forbidden() : bool; // 403 Forbidden
+    $response->notFound() : bool; // 404 Not Found
+    $response->requestTimeout() : bool; // 408 Request Timeout
+    $response->conflict() : bool; // 409 Conflict
     $response->unprocessableEntity() : bool; // 422 Unprocessable Entity
-    $response->tooManyRequests() : bool;     // 429 Too Many Requests
-    $response->serverError() : bool;         // 500 Internal Server Error
+    $response->tooManyRequests() : bool; // 429 Too Many Requests
+    $response->serverError() : bool; // 500 Internal Server Error
 
 
     1xx: İnformasiya Cavabları
@@ -190,4 +184,13 @@ flash()->success('User saved successfully!');
     500 Internal Server Error: Serverdə bir xəta baş verdi.
     502 Bad Gateway: Server, başqa bir serverdən düzgün cavab ala bilmədi.
     503 Service Unavailable: Server müvəqqəti olaraq xidmət göstərmir.
+</div>
+<div class="note">
+    laravel -10-dan yuxari versiyalarda kennel.php olmadigindan bootstrap/app.php-nin ici qeyd elemelisen meselen:
+    ->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+    'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,]);
+    })
+
+    d-flex justify-content-between sinfi istifadə edilərək yazılar həm sağda, həm solda hizalanır.
 </div>

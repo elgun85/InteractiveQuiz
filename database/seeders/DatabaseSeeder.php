@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        $this->call(RoleSeeder::class);
-
-
+        $this->call(
+            [
+                RoleSeeder::class,
+                CategorySeeder::class
+            ]);
 
       //   User::factory(3)->create();
 
@@ -25,7 +24,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('12345678'),
-        ])->assignRole([RoleEnum::ADMIN]);  //syncRoles('user');  // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol təyin edilsin
+        ])->assignRole([RoleEnum::ADMIN]);
+        //syncRoles('user');  // assignRole yerinə syncRoles istifadə olunur ki, yalnız bir rol təyin edilsin
 
         User::factory()->create([
             'name' => 'User',

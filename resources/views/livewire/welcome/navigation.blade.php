@@ -19,7 +19,7 @@ new class extends Component
 
 <nav id="navbar" class="navbar -mx-3 flex flex-1 justify-end">
     <ul>
-        <li><a class="active" href="index.html">Home</a></li>
+        <li><a class="active" href="{{route('home')}}">Home</a></li>
         <li><a href="services.html" >Services</a></li>
 
         <li><a href="contact.html">Contact</a></li>
@@ -38,6 +38,14 @@ new class extends Component
             </a>
             <ul>
                 @auth
+                    @role(\App\RoleEnum::ADMIN)
+                    <li><a class="" href="{{route('category')}}">Category</a></li>
+                    <li><a class="" href="{{route('quiz')}}">Quiz</a></li>
+                    <li><a class="" href="{{route('question')}}">Question</a></li>
+                    @endrole
+
+
+
 
                     <li><a class="" href="#">Profile</a></li>
                     <li><a class="" wire:click="logout" href="#">Log Out</a></li>

@@ -4,13 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\AdminController;
 use App\RoleEnum;
 
 //Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
+/*
+ * Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+*/
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
@@ -18,8 +21,15 @@ Route::view('profile', 'profile')
 
 require __DIR__ . '/auth.php';
 
-Route::middleware('auth')->group(function ()
+Route::middleware('auth')->prefix('Back')->group(function ()
 {
+
+
+
+    Route::get('category',[AdminController::class,'category'])->name('category')->middleware(['role:'.RoleEnum::ADMIN->value]);
+    Route::get('quiz',[AdminController::class,'quiz'])->name('quiz');
+    Route::get('question',[AdminController::class,'question'])->name('question');
+    Route::get('answer',[AdminController::class,'answer'])->name('answer');
 });
 
 
