@@ -23,7 +23,7 @@ class Category extends Component
 
     public function render()
     {
-        $data=\App\Models\Category::paginate(5);
+        $data=\App\Models\Category::withCount('quizzes')->paginate(5);
         return view('livewire.admin.category',compact('data'));
     }
 

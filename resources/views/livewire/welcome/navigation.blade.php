@@ -40,7 +40,7 @@ new class extends Component
                 @auth
                     @role(\App\RoleEnum::ADMIN)
                     <li><a class="" href="{{route('category')}}">Category</a></li>
-                    <li><a class="" href="{{route('quiz')}}">Quiz</a></li>
+                    <li><a class="" href="{{route('quizzes')}}">Quiz</a></li>
                     <li><a class="" href="{{route('question')}}">Question</a></li>
                     @endrole
 

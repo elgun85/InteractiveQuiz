@@ -21,13 +21,19 @@ Route::view('profile', 'profile')
 
 require __DIR__ . '/auth.php';
 
+
 Route::middleware('auth')->prefix('Back')->group(function ()
 {
-
-
-
     Route::get('category',[AdminController::class,'category'])->name('category')->middleware(['role:'.RoleEnum::ADMIN->value]);
-    Route::get('quiz',[AdminController::class,'quiz'])->name('quiz');
+    Route::get('quizzes',[AdminController::class,'quizzes'])->name('quizzes')->middleware(['role:'.RoleEnum::ADMIN->value]);
+    Route::get('/{slug}/{id}', [AdminController::class, 'quiz'])->name('quiz')->middleware(['role:' . RoleEnum::ADMIN->value]);
+    Route::get('/ques/{slug}/{id}', [AdminController::class, 'question'])->name('ques')->middleware(['role:' . RoleEnum::ADMIN->value]);
+
+
+
+
+
+//    Route::get('quiz',[AdminController::class,'quiz'])->name('quiz')->middleware(['role:'.RoleEnum::ADMIN->value]);
     Route::get('question',[AdminController::class,'question'])->name('question');
     Route::get('answer',[AdminController::class,'answer'])->name('answer');
 });
@@ -43,3 +49,8 @@ Route::get('/Forgot-password', [UserController::class, 'Forgot'])->name('Forgot-
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
+/*Route::get('/quiz/{id}', [AdminController::class, 'quiz'])
+    ->name('quiz')
+    ->middleware(['role:' . RoleEnum::ADMIN->value]);*/

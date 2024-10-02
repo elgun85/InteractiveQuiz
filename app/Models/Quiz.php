@@ -6,24 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
-class Category extends Model
+class Quiz extends Model
 {
     use HasFactory,HasRoles;
+    protected $table = 'quizzes';
 
-    protected $table = 'categories';
     protected $fillable=
         [
+            'category_id',
             'title',
             'slug',
+            'level',
+            'description',
             'status',
-            'description'
+
         ];
-    // Bir kategoriya bir çox quiz-ə sahib ola bilər
-    public function quizzes()
+    // Hər bir quiz bir kategoriya aid ola bilər
+    public function category()
     {
-        return $this->hasMany(Quiz::class);
+        return $this->belongsTo(Category::class);
     }
-    protected $casts = [
-        'status' => 'integer',
-    ];
 }

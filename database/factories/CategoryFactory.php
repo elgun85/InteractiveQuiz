@@ -13,7 +13,7 @@ class CategoryFactory extends Factory
 
     public function definition(): array
     {
-        $title=$this->faker->sentence(rand(3,7));
+        $title=$this->faker->sentence(rand(1,2));
         $status = rand(0, 1);
         return [
 
