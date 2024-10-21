@@ -17,13 +17,21 @@ class Category extends Component
     public $title;
     #[Rule('required|min:3|max:250')]
     public $description;
-    public $selected_id;
+    public $selected_id,$search,$count=10;
 
     public $editMode=false;
 
     public function render()
     {
-        $data=\App\Models\Category::withCount('quizzes')->paginate(5);
+        if (!$this->search)
+        {
+            $data=\App\Models\Category::withCount('quizzes')->simplePaginate($this->count);
+        }else{
+            $data=\App\Models\Category::withCount('quizzes')
+                ->whereAny(['title','description'],'like','%'.$this->search.'%')
+                ->simplePaginate($this->count);
+
+        }
         return view('livewire.admin.category',compact('data'));
     }
 

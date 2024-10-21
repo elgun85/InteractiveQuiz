@@ -19,10 +19,10 @@ class AdminController extends Controller
 
         return view('quiz.page.admin.quiz',['categoryId' => $id,'slug'=>$slug]);
     }
-    public function question ($slug,$id)
+    public function question ($slug,$quiz_id)
     {
-       // return $slug.'-'.$id;
-        return view('quiz.page.admin.question',['categoryId' => $id,'slug'=>$slug]);
+
+        return view('quiz.page.admin.question',['quiz_id' => $quiz_id,'slug'=>$slug]);
     }
     public function answer()
     {

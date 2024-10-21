@@ -21,7 +21,7 @@
         <section id="services" class="services">
             <div class="container">
                 <div class="row">
-                   {{-- <livewire:admin.quiz :id="$categoryId" :slug="$slug" />--}}
+                    <livewire:admin.question :quiz_id="$quiz_id" :slug="$slug" />
                 </div>
             </div>
         </section>

@@ -1,18 +1,43 @@
 <div>
-    <div class="d-flex justify-content-end">
+    <div class="card-title">
+        <div class="d-flex w-100 justify-content-between">
+            <div class="col-auto "style="margin-right: -70px;" >
+                <input wire:model.live="search" type="search" class="form-control">
+            </div>
+            <div class="col-auto">
+                <select wire:model.live="count" class="form-select">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+                <button href="#" wire:click.prevent="new" data-bs-toggle="modal" data-bs-target="#CategoryModel"
+                        class="btn btn-primary rounded-pill float-end">
+                    <i class="fas fa-plus-circle fa-lg"></i> <b>New</b>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{{--    <div class="d-flex justify-content-end">
         <a wire:click.prevent="new" href="#" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#CategoryModel">
             <i class="fas fa-plus-circle fa-lg"></i> <b>New</b>
         </a>
-    </div>
+    </div>--}}
 
     <div class="card mt-3">
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
-                <tr>
+                <tr style="text-transform: capitalize;vertical-align: middle;" class="text-center"style="text-align: left;" >
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
+                    <th style="text-align: left;" scope="col">Title</th>
+                    <th style="text-align: left;" scope="col">Description</th>
                     <th scope="col">Count Quiz</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
@@ -20,10 +45,10 @@
                 </thead>
                 <tbody>
                 @forelse($data as $categoryItem)
-                    <tr>
+                    <tr style="text-transform: capitalize;vertical-align: middle;" class="text-center">
                         <th scope="row">{{$categoryItem->id}}</th>
-                        <td>{{\Illuminate\Support\Str::limit($categoryItem->title,25)}}</td>
-                        <td>{{\Illuminate\Support\Str::limit($categoryItem->description,60)}}</td>
+                        <td style="text-align: left;">{{substr($categoryItem->title,0,25)}}</td>
+                        <td style="text-align: left;">{{substr($categoryItem->description,0,60)}}</td>
                         <td><span>{{$categoryItem->quizzes_count}}</span></td>
                         <td>
                             <div class=" form-switch">

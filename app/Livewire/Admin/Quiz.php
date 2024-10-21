@@ -16,13 +16,16 @@ class Quiz extends Component
 
     public $categoryId;
     public $slug;
+
     #[Rule('required|min:3')]
     public $title;
+
     #[Rule('required|min:3|max:250')]
     public $description;
+
     #[Rule('required')]
     public $level;
-    public $selected_id;
+    public $selected_id,$search,$count=10;
 
     public function mount($id)
     {
@@ -31,9 +34,18 @@ class Quiz extends Component
 
     public function render()
     {
-       $data=\App\Models\Quiz::where('category_id',$this->categoryId)
-           ->orderBy('id','DESC')
-           ->paginate(5);
+        if (!$this->search)
+        {
+            $data=\App\Models\Quiz::withCount('question')->where('category_id',$this->categoryId)
+                ->orderBy('id','DESC')
+                ->simplePaginate($this->count);
+        }else{
+            $data=\App\Models\Quiz::withCount('question')->where('category_id',$this->categoryId)
+                ->orderBy('id','DESC')
+                ->whereAny(['title','description'],'like','%'.$this->search.'%')
+                ->simplePaginate($this->count);
+        }
+
 
         return view('livewire.admin.quiz',compact('data'));
     }

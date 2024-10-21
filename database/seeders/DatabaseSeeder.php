@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             [
                 RoleSeeder::class,
                 CategorySeeder::class,
-                QuizSeeder::class
+                QuizSeeder::class,
+                QuestionSeeder::class
             ]);
 
       //   User::factory(3)->create();
@@ -33,5 +34,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@user.com',
             'password' => bcrypt('12345678'),
         ])->assignRole([RoleEnum::USER]);
+
+
     }
 }

@@ -26,4 +26,9 @@ class Quiz extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function question()
+    {
+        return $this->hasMany(Question::class,'quiz_id','id');
+    }
 }

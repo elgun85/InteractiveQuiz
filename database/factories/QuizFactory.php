@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Quiz;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -26,5 +27,8 @@ class QuizFactory extends Factory
             'description'   =>  $this->faker->text(200),
             'status'        =>  $this->faker->boolean,
         ];
+
     }
+
+
 }
